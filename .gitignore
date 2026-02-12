@@ -1,0 +1,24 @@
+# secret keys
+keys/
+*.key
+*.pem
+*.jks
+*.p12
+
+# certificates generated
+certificates/
+
+# database
+*.sql
+
+# compiled files
+*.class
+bin/
+out/
+
+# IDE
+.vscode/
+.idea/
+
+# logs
+*.log
