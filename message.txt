@@ -1,0 +1,2 @@
+This is a confidential hostel payment record.
+Amount: 5000
