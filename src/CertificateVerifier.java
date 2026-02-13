@@ -13,6 +13,13 @@ public class CertificateVerifier {
                 new FileInputStream("certificates/StudentUser.cert"));
         DigitalCertificate cert = (DigitalCertificate) in.readObject();
         in.close();
+        
+        String owner = cert.getOwnerName();
+
+        if(CRLManager.isRevoked(owner)) {
+            System.out.println("Certificate has been REVOKED!");
+            return;
+        }
 
         // Verify certificate
         boolean result = cert.verifyCertificate(caPublicKey);

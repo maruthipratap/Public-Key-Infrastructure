@@ -5,6 +5,8 @@ import java.util.Date;
 
 public class DigitalCertificate implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+    
     private String ownerName;
     private String publicKey;
     private String issuer;
@@ -44,4 +46,8 @@ public class DigitalCertificate implements Serializable {
         out.writeObject(this);
         out.close();
     }
+    public String getOwnerName() {
+        return ownerName;
+    }
+
 }
