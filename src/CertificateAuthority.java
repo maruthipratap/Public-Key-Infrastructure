@@ -5,6 +5,11 @@ import java.util.Base64;
 
 public class CertificateAuthority {
 
+    private static String basePath = "";
+    public static void setBasePath(String path){
+        basePath = path;
+    }
+
     public static PublicKey loadPublicKey(String filename) throws Exception {
         byte[] keyBytes = Base64.getDecoder().decode(readFile(filename));
         X509EncodedKeySpec spec = new X509EncodedKeySpec(keyBytes);
@@ -33,8 +38,9 @@ public class CertificateAuthority {
     public static void main(String[] args) throws Exception {
 
         // Load CA Keys
-        PrivateKey caPrivateKey = loadPrivateKey("keys/private.key");
-        PublicKey caPublicKey = loadPublicKey("keys/public.key");
+        PrivateKey caPrivateKey = loadPrivateKey(basePath + "keys/private.key");
+        PublicKey caPublicKey = loadPublicKey(basePath + "keys/public.key");
+
 
         // Create certificate for user
         String userName = "StudentUser";
@@ -46,7 +52,7 @@ public class CertificateAuthority {
         cert.signCertificate(caPrivateKey);
 
         // Save certificate
-        cert.saveCertificate("certificates/" + userName + ".cert");
+        cert.saveCertificate(basePath + "certificates/" + userName + ".cert");
 
         System.out.println("Certificate issued successfully for " + userName);
     }

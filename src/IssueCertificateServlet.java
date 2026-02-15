@@ -11,12 +11,20 @@ public class IssueCertificateServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         try {
+
+            String realPath = getServletContext().getRealPath("/");
+
+            CertificateAuthority.setBasePath(realPath);
+
             CertificateAuthority.main(null);
+
             out.println("<h2>Certificate Issued Successfully!</h2>");
             out.println("<a href='/pki'>Go Back</a>");
+
         } catch (Exception e) {
             out.println("<h2>Error issuing certificate</h2>");
             out.println(e.getMessage());
         }
+
     }
 }

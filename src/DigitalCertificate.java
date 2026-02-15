@@ -49,5 +49,16 @@ public class DigitalCertificate implements Serializable {
     public String getOwnerName() {
         return ownerName;
     }
+    public String getIssuer() {
+        return issuer;
+    }
+
+    public java.util.Date getValidFrom() {
+        return validFrom;
+    }
+
+    public java.util.Date getValidTo() {
+        return validTo;
+    }
 
 }
