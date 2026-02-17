@@ -11,8 +11,8 @@ public class ViewCertificateServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         try {
-
-            String path = getServletContext().getRealPath("/") + "certificates/StudentUser.cert";
+            String basePath = getServletContext().getRealPath("/data/");
+            String path = basePath + "certificates/StudentUser.cert";
 
             ObjectInputStream in = new ObjectInputStream(new FileInputStream(path));
             DigitalCertificate cert = (DigitalCertificate) in.readObject();

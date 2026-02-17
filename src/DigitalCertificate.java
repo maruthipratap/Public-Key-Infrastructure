@@ -41,11 +41,17 @@ public class DigitalCertificate implements Serializable {
         return verify.verify(Base64.getDecoder().decode(signature));
     }
 
-    public void saveCertificate(String path) throws Exception {
-        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(path));
+    public void saveCertificate(String filename) throws Exception {
+    
+        File file = new File(filename);
+        file.getParentFile().mkdirs();   // ensure directory exists
+    
+        ObjectOutputStream out = new ObjectOutputStream(
+                new FileOutputStream(file));
         out.writeObject(this);
         out.close();
     }
+
     public String getOwnerName() {
         return ownerName;
     }
